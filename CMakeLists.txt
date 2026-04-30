@@ -7,4 +7,15 @@ endif()
 
 project ("InPost")
 
+include(FetchContent)
+
+set(BUILD_SHARED_LIBS OFF)
+
+set(CPR_BUILD_TESTS OFF)
+set(CPR_CURL_USE_LIBPSL OFF)  
+
+FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
+                         GIT_TAG 1.14.2) 
+FetchContent_MakeAvailable(cpr)
+
 add_subdirectory ("InPost")
