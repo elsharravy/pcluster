@@ -9,5 +9,6 @@ project ("InPost")
 
 set(BUILD_SHARED_LIBS OFF)
 
-add_subdirectory ("InPost")
+add_subdirectory ("Pcluster")
+add_subdirectory ("App")
 add_subdirectory ("tests")

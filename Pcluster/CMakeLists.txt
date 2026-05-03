@@ -1,7 +1,9 @@
-﻿add_executable (InPost "src/main.cpp" )
+﻿set( src "")
+
+add_library( Pcluster "${src}" )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET InPost PROPERTY CXX_STANDARD 20)
+  set_property(TARGET Pcluster PROPERTY CXX_STANDARD 20)
 endif()
 
 include(FetchContent)
@@ -14,4 +16,6 @@ FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
                          GIT_TAG 1.14.2) 
 FetchContent_MakeAvailable(cpr)
 
-target_link_libraries(InPost PRIVATE cpr::cpr)
+target_link_libraries(Pcluster PRIVATE cpr::cpr)
+
+target_include_directories( Pcluster PUBLIC src )  

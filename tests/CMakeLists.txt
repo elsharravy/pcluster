@@ -1,7 +1,7 @@
-﻿add_executable (InPostTest "ExampleTest.cpp" )
+﻿add_executable (PclusterTest "ExampleTest.cpp" )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET InPostTest PROPERTY CXX_STANDARD 20)
+  set_property(TARGET PclusterTest PROPERTY CXX_STANDARD 20)
 endif()
 
 include(FetchContent)
@@ -17,7 +17,10 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-target_link_libraries(InPostTest PRIVATE GTest::gtest_main)
+target_link_libraries(PclusterTest PRIVATE 
+	Pcluster
+	GTest::gtest_main
+)
 
 include(GoogleTest)
-gtest_discover_tests(InPostTest)
+gtest_discover_tests(PclusterTest)
