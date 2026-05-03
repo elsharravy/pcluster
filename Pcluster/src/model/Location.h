@@ -11,6 +11,7 @@ namespace pcluster {
 
 		float distance(const Location& location) const;
 		friend std::ostream& operator <<(std::ostream& os, const Location& location);
+		bool operator==( const Location& location) const;
 
 		float getLongitude()const;
 		float getLatitude()const;

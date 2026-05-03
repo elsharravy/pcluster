@@ -16,6 +16,14 @@ float pcluster::Location::distance(const Location& location) const
 	return distance;
 }
 
+bool pcluster::Location::operator==(const Location& location) const
+{
+	if ((latitude == location.latitude) && (longitude == location.longitude)) {
+		return true;
+	}
+	return false;
+}
+
 float pcluster::Location::getLongitude() const
 {
 	return longitude;
