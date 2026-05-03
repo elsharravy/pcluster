@@ -1,4 +1,4 @@
-﻿set( src "")
+﻿set( src "src/model/ParcelLocker.h" "src/model/Cluster.h" "src/model/Location.h" "src/model/Location.cpp" "src/model/ParcelLocker.cpp" "src/model/Cluster.cpp" )
 
 add_library( Pcluster "${src}" )
 
