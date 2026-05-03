@@ -12,7 +12,7 @@ float pcluster::Location::distance(const Location& location) const
 	float dLon = location.longitude - longitude;
 	float dLat = location.latitude - latitude;
 
-	float distance = sqrt(pow(dLon, 2) + pow(dLon, 2));
+	float distance = sqrt(pow(dLon, 2) + pow(dLat, 2));
 	return distance;
 }
 
