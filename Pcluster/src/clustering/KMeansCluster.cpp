@@ -2,7 +2,6 @@
 
 pcluster::KMeansCluster::KMeansCluster(Location center) : center(center)
 {
-	locations.push_back(center);
 }
 
 void pcluster::KMeansCluster::addLocationUpdateCenter(const Location& location)
