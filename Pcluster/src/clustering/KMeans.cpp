@@ -1,6 +1,8 @@
 #include "KMeans.h"
 
 #include <algorithm>
+#include <iostream>
+#include <random>
 
 #include <clustering/KMeansCluster.h>
 #include <model/Cluster.h>
@@ -13,20 +15,30 @@ size_t findMinimumIndex(const std::vector<float>& vec) {
 
 std::vector<pcluster::Location> pcluster::kmeans(int clustersCount,const std::vector<ParcelLocker>& lockers, int n, float tolerance)
 {
+	std::random_device rd;
+	std::mt19937 gen(rd());
+
+	std::vector<ParcelLocker> lockersCopy = lockers;
+
 	// clusters random centers
 	std::vector<KMeansCluster> clusters;
 	clusters.reserve(clustersCount);
 	for (size_t i = 0; i < clustersCount; i++)
 	{
-		Location center((i+1)*5, (i+1)*5);
+		std::uniform_int_distribution<> dist(0, lockersCopy.size()-1);
+		size_t pos = dist(gen);
+
+		Location center = lockersCopy.at( pos ).getLocation();
 		clusters.push_back(center);
+
+		lockersCopy.erase(lockersCopy.begin()+pos);
 	}
 
 	// assign n lockers
 	for (size_t i = 0; i < n; i++)
 	{
 		std::vector<float> distances;
-		auto& locker = lockers.at(i);
+		auto& locker = lockersCopy.at(i);
 		// calculate distance to every cluster
 		for (auto& cluster : clusters) {
 			float distance = locker.getLocation().distance(cluster.getCenter());
