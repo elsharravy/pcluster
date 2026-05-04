@@ -12,6 +12,7 @@ namespace pcluster {
 		Cluster(Location center);
 
 		void addLocker(const ParcelLocker& locker);
+		std::vector<ParcelLocker> getLockers() const;
 	private:
 		std::vector<ParcelLocker> lockers;
 		Location center;
