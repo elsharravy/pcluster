@@ -15,18 +15,37 @@ size_t findMinimumIndex(const std::vector<float>& vec) {
 
 std::vector<pcluster::Location> pcluster::kmeans(int clustersCount,const std::vector<ParcelLocker>& lockers, int maxIterations, float tolerance)
 {
-	std::random_device rd;
-	std::mt19937 gen(rd());
+	// special cases
+	if (clustersCount == 0) {
+		throw std::invalid_argument("clustersCount can't be equal zero");
+	}
+	if (clustersCount > lockers.size()) {
+		throw std::invalid_argument("clustersCount can't be greater than lockers count");
+	}
+	if ( lockers.empty() ) {
+		throw std::invalid_argument("lockers vector can't be empty");
+	}
+	if ( maxIterations < 1 ) {
+		throw std::invalid_argument("max iterations must be higher than 0");
+	}
 
 	// clusters random centers
 	std::vector<KMeansCluster> clusters;
 	clusters.reserve(clustersCount);
+
+	std::vector<size_t> indices;
+	indices.reserve(lockers.size());
+	for (size_t i = 0; i < lockers.size(); i++)
+	{
+		indices.push_back(i);
+	}
+
+	auto rng = std::default_random_engine{};
+	std::ranges::shuffle(indices, rng);
+
 	for (size_t i = 0; i < clustersCount; i++)
 	{
-		std::uniform_int_distribution<> dist(0, lockers.size()-1);
-		size_t pos = dist(gen);
-
-		Location center = lockers.at( pos ).getLocation();
+		Location center = lockers.at( indices.at(i) ).getLocation();
 		clusters.push_back(center);
 	}
 	
@@ -60,7 +79,6 @@ std::vector<pcluster::Location> pcluster::kmeans(int clustersCount,const std::ve
 			break;
 		}
 
-		
 	}
 
 	std::vector<Location> centers;
