@@ -1,25 +1,34 @@
 #include "KMeansCluster.h"
 
-pcluster::KMeansCluster::KMeansCluster(Location center) : center(center)
+pcluster::KMeansCluster::KMeansCluster(Location center) : center(center), count(0), latitudeSum(0), longitudeSum(0)
 {
+	
 }
 
-void pcluster::KMeansCluster::addLocationUpdateCenter(const Location& location)
+void pcluster::KMeansCluster::addLocation(const Location& location)
 {
-	float lat = center.getLatitude();
-	float lon = center.getLongitude();
+	latitudeSum += location.getLatitude();
+	longitudeSum += location.getLongitude();
 
-	size_t locCount = locations.size();
-	float newLat = (lat * locCount + location.getLatitude()) / (locCount+1) ;
-	float newLon = (lon * locCount + location.getLongitude()) / (locCount+1) ;
+	++count;
+}
 
-	Location newCenter(newLon, newLat);
+float pcluster::KMeansCluster::recalculateCenter()
+{
+	Location newCenter(longitudeSum / count, latitudeSum / count);
+	float distanceChange = center.distance(newCenter);
 	center = newCenter;
-
-	locations.push_back(location);
+	return distanceChange;
 }
 
 pcluster::Location pcluster::KMeansCluster::getCenter() const
 {
 	return center;
+}
+
+void pcluster::KMeansCluster::clear()
+{
+	latitudeSum = 0;
+	longitudeSum = 0;
+	count = 0;
 }

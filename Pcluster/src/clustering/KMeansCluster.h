@@ -10,10 +10,14 @@ namespace pcluster {
 	public:
 		KMeansCluster(Location center);
 
-		void addLocationUpdateCenter(const Location& location);
+		void addLocation(const Location& location);
+		float recalculateCenter();
 		Location getCenter()const;
+		void clear();
 	private:
-		std::vector<Location> locations;
+		float latitudeSum;
+		float longitudeSum;
+		int count;
 		Location center;
 	};
 
