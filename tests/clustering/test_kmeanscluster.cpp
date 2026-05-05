@@ -5,7 +5,7 @@
 
 using namespace pcluster;
 
-TEST(KMeansClusterTest, addingLocation) {
+TEST(KMeansClusterTest, calculatingCenter) {
 
 	KMeansCluster cluster(Location( 20,30));
 
