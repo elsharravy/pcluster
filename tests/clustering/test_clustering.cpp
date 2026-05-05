@@ -63,3 +63,13 @@ TEST(ClusteringTest, solveSimpleCase) {
 	EXPECT_EQ("4", lockers2.at(1).getName());
 	EXPECT_EQ("5", lockers1.at(1).getName());
 }
+
+TEST(ClusteringTest, throwsOnClusterCentersEmpty) {
+	std::vector<pcluster::ParcelLocker> lockers;
+	std::vector<pcluster::Location> clusterCenters;
+
+	lockers.push_back(ParcelLocker("1", Location(0, 0)));
+	lockers.push_back(ParcelLocker("2", Location(0.5, 3)));
+
+	EXPECT_THROW(clustering(clusterCenters, lockers), std::invalid_argument);
+}

@@ -15,6 +15,9 @@ void pcluster::KMeansCluster::addLocation(const Location& location)
 
 float pcluster::KMeansCluster::recalculateCenter()
 {
+	if (count == 0) {
+		return 0;
+	}
 	Location newCenter(longitudeSum / count, latitudeSum / count);
 	float distanceChange = center.distance(newCenter);
 	center = newCenter;

@@ -17,13 +17,13 @@ std::vector<pcluster::Location> pcluster::kmeans(int clustersCount,const std::ve
 {
 	// special cases
 	if (clustersCount == 0) {
-		throw std::invalid_argument("clustersCount can't be equal zero");
+		throw std::invalid_argument("clustersCount cannot be equal zero");
 	}
 	if (clustersCount > lockers.size()) {
-		throw std::invalid_argument("clustersCount can't be greater than lockers count");
+		throw std::invalid_argument("clustersCount cannot be greater than lockers count");
 	}
 	if ( lockers.empty() ) {
-		throw std::invalid_argument("lockers vector can't be empty");
+		throw std::invalid_argument("lockers vector cannot be empty");
 	}
 	if ( maxIterations < 1 ) {
 		throw std::invalid_argument("max iterations must be higher than 0");
@@ -90,6 +90,10 @@ std::vector<pcluster::Location> pcluster::kmeans(int clustersCount,const std::ve
 }
 
 std::vector<pcluster::Cluster> pcluster::clustering(const std::vector<Location>& centroids, const std::vector<ParcelLocker>& lockers) {
+
+	if (centroids.empty()) {
+		throw std::invalid_argument("cluster centroids vector cannot be empty");
+	}
 
 	// initialize clusters
 	std::vector<pcluster::Cluster> clusters;

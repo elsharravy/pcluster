@@ -6,20 +6,20 @@
 
 using namespace pcluster;
 
-TEST(KMeansTest, ThrowsWhenClusterCountIsZero) {
+TEST(KMeansTest, throwsWhenClusterCountIsZero) {
 	std::vector<pcluster::ParcelLocker> lockers;
 	lockers.push_back(ParcelLocker("abc", Location(2, 2)));
 
 	EXPECT_THROW(kmeans(0, lockers), std::invalid_argument);
 }
 
-TEST(KMeansTest, ThrowsWhenLockersIsEmpty) {
+TEST(KMeansTest, throwsWhenLockersIsEmpty) {
 	std::vector<pcluster::ParcelLocker> lockers;
 
 	EXPECT_THROW(kmeans(4, lockers), std::invalid_argument);
 }
 
-TEST(KMeansTest, ThrowsWhenClusterCountIsGreaterThanLockersCount) {
+TEST(KMeansTest, throwsWhenClusterCountIsGreaterThanLockersCount) {
 	std::vector<pcluster::ParcelLocker> lockers;
 	lockers.push_back(ParcelLocker("abc", Location(2, 2)));
 	lockers.push_back(ParcelLocker("def", Location(1, 3)));
@@ -28,7 +28,7 @@ TEST(KMeansTest, ThrowsWhenClusterCountIsGreaterThanLockersCount) {
 	EXPECT_THROW(kmeans(4, lockers), std::invalid_argument);
 }
 
-TEST(KMeansTest, ThrowsWhenMaxIterationsIsLowerThanOne) {
+TEST(KMeansTest, throwsWhenMaxIterationsIsLowerThanOne) {
 	std::vector<pcluster::ParcelLocker> lockers;
 	lockers.push_back(ParcelLocker("abc", Location(2, 2)));
 	lockers.push_back(ParcelLocker("def", Location(1, 3)));
