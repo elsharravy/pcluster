@@ -27,12 +27,12 @@ int main(int argc, char** argv)
 	double tolerance = 0.000001;
 	
 	app.add_option("-c,--clusters", clustersCount, "Number of clusters")->required();
-	app.add_option("-o,--output", outputFileName, "Output file");
-	app.add_option("-p,--province", province, "Province");
-	app.add_option("-k,--country", country, "Country");
+	app.add_option("-o,--output", outputFileName, "Output file path");
+	app.add_option("-p,--province", province, "Province to filter by");
+	app.add_option("-k,--country", country, "Country to filter by");
 	app.add_option("-i,--iterations", maxIterations, "kMeans algorithm maximum iterations");
 	app.add_option("-t,--tolerance", tolerance, "kMeans algorithm tolerance");
-	app.add_option("-l,--limit", limit, "Limit");
+	app.add_option("-l,--limit", limit, "Limit parcel lockers retrieved");
 
 	CLI11_PARSE(app, argc, argv);
 
