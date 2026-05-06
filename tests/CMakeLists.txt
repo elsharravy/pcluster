@@ -1,8 +1,6 @@
 ﻿add_executable (PclusterTest   "model/test_location.cpp" "clustering/test_kmeanscluster.cpp" "clustering/test_kmeans.cpp" "clustering/test_clustering.cpp")
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET PclusterTest PROPERTY CXX_STANDARD 20)
-endif()
+target_compile_features(PclusterTest PUBLIC cxx_std_20)
 
 include(FetchContent)
 

@@ -2,9 +2,7 @@
 
 add_library( Pcluster "${src}" )
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET Pcluster PROPERTY CXX_STANDARD 20)
-endif()
+target_compile_features(Pcluster PUBLIC cxx_std_20)
 
 include(FetchContent)
 
