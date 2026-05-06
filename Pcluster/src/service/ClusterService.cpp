@@ -21,12 +21,12 @@ std::vector<pcluster::ParcelLocker> pcluster::ClusterService::getParcelLockersFr
 
 		auto json = nlohmann::json::parse(response.first);
 
-		if (page >= json["total_pages"]) {
-			break;
+		if (!JsonParser::parseLockers(lockers, json, limit)) {
+			return lockers;
 		}
 
-		if ( ! JsonParser::parseLockers(lockers, json, limit)) {
-			return lockers;
+		if (page >= json["total_pages"]) {
+			break;
 		}
 
 		++page;
