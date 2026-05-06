@@ -25,8 +25,6 @@ std::vector<pcluster::ParcelLocker> pcluster::ClusterService::getParcelLockersFr
 			break;
 		}
 
-		std::cout << response.second << "\n";
-
 		if ( ! JsonParser::parseLockers(lockers, json, limit)) {
 			return lockers;
 		}
