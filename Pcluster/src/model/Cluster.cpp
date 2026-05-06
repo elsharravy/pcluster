@@ -13,3 +13,8 @@ std::vector<pcluster::ParcelLocker> pcluster::Cluster::getLockers() const
 {
 	return lockers;
 }
+
+pcluster::Location pcluster::Cluster::getCenter()const
+{
+	return center;
+}

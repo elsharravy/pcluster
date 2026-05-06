@@ -1,6 +1,6 @@
 ﻿set( src "src/model/ParcelLocker.h" "src/model/Cluster.h" "src/model/Location.h" "src/model/Location.cpp" "src/model/ParcelLocker.cpp" "src/model/Cluster.cpp" "src/clustering/KMeans.h" "src/clustering/KMeans.cpp" "src/clustering/KMeansCluster.h" "src/clustering/KMeansCluster.cpp" "src/api/RestClient.h")
 
-add_library( Pcluster "${src}"   "src/api/RestClient.cpp" "src/service/ClusterService.h" "src/service/ClusterService.cpp" "src/json/JsonParser.h" "src/json/JsonParser.cpp")
+add_library( Pcluster "${src}"   "src/api/RestClient.cpp" "src/service/ClusterService.h" "src/service/ClusterService.cpp" "src/json/JsonParser.h" "src/json/JsonParser.cpp" "src/json/JsonFileSaver.h" "src/json/JsonFileSaver.cpp")
 
 target_compile_features(Pcluster PUBLIC cxx_std_20)
 
