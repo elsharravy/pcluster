@@ -60,6 +60,7 @@ int main(int argc, char** argv)
 	}
 	catch (exception& e) {
 		cout << e.what() << endl;
+		return -1;
 	}
 
 
