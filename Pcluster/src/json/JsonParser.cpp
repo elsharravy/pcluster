@@ -2,10 +2,10 @@
 
 #include <nlohmann/json.hpp>
 
-void pcluster::JsonParser::parseLockers(std::vector<pcluster::ParcelLocker>& lockers, const nlohmann::json& json)
+bool pcluster::JsonParser::parseLockers(std::vector<pcluster::ParcelLocker>& lockers, const nlohmann::json& json, int limit)
 {
     if (!json.contains("items") || !json["items"].is_array()) {
-        return;
+        return true;
     }
 
     for (const auto& item : json["items"])
@@ -28,5 +28,10 @@ void pcluster::JsonParser::parseLockers(std::vector<pcluster::ParcelLocker>& loc
 
         ParcelLocker locker(name, Location(longitude, latitude));
         lockers.push_back(locker);
+        if ( (limit > 0) && (lockers.size() >= limit)) {
+            return false;
+        }
     }
+
+    return true;
 }

@@ -11,7 +11,7 @@ namespace pcluster {
 	class JsonParser {
 
 	public:
-		static void parseLockers(std::vector<pcluster::ParcelLocker>& lockers, const nlohmann::json& json);
+		static bool parseLockers(std::vector<pcluster::ParcelLocker>& lockers, const nlohmann::json& json, int limit);
 
 	};
 
