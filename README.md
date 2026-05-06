@@ -73,7 +73,7 @@ Image below shows example output when error occurs
 - ./App -c 5 -o result.json
 
   Filter by country and province and limit output to 1000 lockers:
-- ./App -c 5 -k Poland -p Malopolskie -l 1000
+- ./App -c 5 -k PL -p lubuskie -l 1000
 
   Limit dataset and adjust algorithm parameters:
 - ./App -c 5 -l 1000 -i 200 -t 0.00001
