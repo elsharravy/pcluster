@@ -13,8 +13,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-enable_testing()
-
 target_link_libraries(PclusterTest PRIVATE 
 	Pcluster
 	GTest::gtest_main

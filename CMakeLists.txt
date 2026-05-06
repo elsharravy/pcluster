@@ -9,6 +9,8 @@ project ("InPost")
 
 set(BUILD_SHARED_LIBS OFF)
 
+enable_testing()
+
 add_subdirectory ("Pcluster")
 add_subdirectory ("App")
 add_subdirectory ("tests")
