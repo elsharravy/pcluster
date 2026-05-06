@@ -175,21 +175,20 @@ Image below shows example output when error occurs
 
 - using modern C++ features like: string_view ( to avoid unecessary copying of string variables )
  
-Algorithms Explanation:
+### Algorithms Explanation:
 
-- kmeans algorithm(https://en.wikipedia.org/wiki/K-means_clustering):
+- [Kmeans algorithm](https://en.wikipedia.org/wiki/K-means_clustering):
 
-Algorithm completely implemented by me during development of this project.
-Algorithm used to cluster data points into similar groups ( in this case similar locations ). At the start it chooses [-c] random lockers and sets it's location as cluster initial center.
-In next step it iterates through all lockers and assigns them to the closest Cluster. Recalculates center from assigned lockers locations, and if highest change in center location was lesser than [-t] tolerance it stops. Otherwise it continues assigning lockers all over again, but this time clusters centers are different. Algorithms goes like this until it will iterates more than [-i] maxIterations or [-t] tolerance will be achieved. 
+Algorithm implemented from scratch by me during project development. <br>
+Algorithm is used to cluster data points into similar groups ( in this case similar locations ). At the start it chooses [-c] random lockers and sets it's location as cluster initial center.
+In next step it iterates through all lockers and assigns them to the closest Cluster.<br> Recalculates center from assigned lockers locations, and if highest change in center location was lesser than [-t] tolerance it stops. Otherwise it continues assigning lockers all over again, but this time clusters centers are different. Algorithms goes like this until it will iterate more than [-i] maxIterations or [-t] tolerance will be achieved. 
 
-I chose this algorithm because it is quite simple, converges quite fast, and gives good results.
-Note: After implementing Haversine distance, I would have to reimplement kmeans algorithm with it's variation dedicated for Haversine distances.
+I chose this algorithm because it is simple, converges quite fast, and gives good results.<br>
 
-Use of API:
+### Use of InPost API
 
-I achieved filtered API results by country or province by using get parameters as described in InPostAPI documentation: https://dokumentacja-inpost.atlassian.net/wiki/spaces/PL/pages/451903492/InPost+Integration+FAQ
-I am also using "page" and "per_page" parameters to read all required data from endpoint, and "fields" parameter to avoid parsing unecessary data.
+I achieved filtered API results by country and province by using get parameters as described in InPostAPI documentation: https://dokumentacja-inpost.atlassian.net/wiki/spaces/PL/pages/451903492/InPost+Integration+FAQ <br>
+I'm also using "page" and "per_page" parameters to control pagination, and "fields" parameter to limit fields returned from API server.
 
 ## Technologies
 
@@ -197,10 +196,10 @@ I created this application using C++ programming language.
 
 Libraries I used:
 
-- CPR (https://github.com/libcpr/cpr)
-- JSON (https://github.com/nlohmann/json)
-- GoogleTest (https://github.com/google/googletest)
-- CLI11 (https://github.com/CLIUtils/CLI11)
+- [CPR](https://github.com/libcpr/cpr)
+- [JSON](https://github.com/nlohmann/json)
+- [GoogleTest](https://github.com/google/googletest)
+- [CLI11](https://github.com/CLIUtils/CLI11)
 
 ## How to run
 
