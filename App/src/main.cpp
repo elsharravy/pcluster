@@ -45,7 +45,7 @@ int main(int argc, char** argv)
 		cout << "Retrieving data from: " << endpointURL << endl;
 
 		pcluster::ClusterService cs;
-		lockers = cs.getParcelLockersFromRestApi(limit);
+		lockers = cs.getParcelLockersFromRestApi(limit, country, province);
 
 		cout << "Starting kmeans algorithm" << endl;
 

@@ -7,7 +7,7 @@
 #include <api/RestClient.h>
 #include <json/JsonParser.h>
 
-std::vector<pcluster::ParcelLocker> pcluster::ClusterService::getParcelLockersFromRestApi(int limit)
+std::vector<pcluster::ParcelLocker> pcluster::ClusterService::getParcelLockersFromRestApi(int limit, std::string country, std::string province)
 {
 	std::vector<pcluster::ParcelLocker> lockers;
 
@@ -17,7 +17,7 @@ std::vector<pcluster::ParcelLocker> pcluster::ClusterService::getParcelLockersFr
 	std::string endpointURL = "https://api-global-points.easypack24.net/v1/points";
 
 	while (true) {
-		auto response = RestClient::get(endpointURL, page, perPage);
+		auto response = RestClient::get(endpointURL, page, perPage, country, province);
 
 		auto json = nlohmann::json::parse(response.first);
 

@@ -8,7 +8,7 @@ namespace pcluster {
 
 	class ClusterService {
 	public:
-		std::vector<ParcelLocker> getParcelLockersFromRestApi( int limit );
+		std::vector<ParcelLocker> getParcelLockersFromRestApi( int limit, std::string country, std::string province);
 
 	};
 
