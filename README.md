@@ -208,6 +208,7 @@ Libraries I used:
 - Windows or Linux operating system
 - C++20
 - CMake
+- OpenSSL
 - Visual Studio (Or build system of your choosing)
 
 ### Build & run

@@ -7,6 +7,9 @@ target_compile_features(Pcluster PUBLIC cxx_std_20)
 include(FetchContent)
 
 # CPR
+find_package(OpenSSL REQUIRED)
+
+set(CPR_USE_SYSTEM_CURL ON)
 set(CPR_BUILD_TESTS OFF)
 set(CPR_CURL_USE_LIBPSL OFF)  
 
