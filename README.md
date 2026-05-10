@@ -11,11 +11,6 @@ Pcluster is a CLI tool for clustering parcel lockers based on their geographic l
 
 ## Demo & Description
 
-If applicable, include:
-- a link to the deployed solution
-- screenshots of the UI or key outputs
-- a short screen recording or demo video
-
 ### Application execution flow summary
 
 1. Parsing command line parameters 
@@ -27,19 +22,20 @@ If applicable, include:
 ### Project Structure
 
 Whole Project is divided into three targets (subdirectories):  
-- Pcluster - library that is providing classes and functions required to create application
+- **Pcluster** - library that is providing classes and functions required to create application.
 All classes are declared inside pcluster namespace to avoid naming conflicts with outside code.
 Source code is divided into 5 main directories:
-    - model - contains key classes: Location, ParcelLocker and Cluster.
-    - clustering - contains key algorithms: KMeans and clustering
-    - api - contains RestClient responsible for connecting with API endpoint: https://api-global-points.easypack24.net/v1/points
-    - service - contains ClusterService responsible for coordinating API requests and JSON parsing.
-    - json - contains class responsible for parsing JSON data containing ParcelLockers details, and class responsible for saving file with created clusters data
-- tests - executable responsible for testing Pcluster library.
+    - *model* - contains key classes: Location, ParcelLocker and Cluster.
+    - *clustering* - contains key algorithms: KMeans and clustering
+    - *api* - contains RestClient responsible for connecting with API endpoint: https://api-global-points.easypack24.net/v1/points
+    - *service* - contains ClusterService responsible for coordinating API requests and JSON parsing.
+    - *json* - contains class responsible for parsing JSON data containing ParcelLockers details, and class responsible for saving file with created clusters data
+- **tests** - executable responsible for testing Pcluster library.
 
-    After building project you can run tests from pcluster directory with command: "ctest --test-dir build"
 
-- App - actual CLI tool executable
+- **App** - actual CLI tool executable
+
+    Uses CLI11 and Pcluster library to provide complete CLI tool
 
 ### CLI Parameters
 
@@ -66,17 +62,17 @@ Image below shows example output when error occurs
 
 ### Example CLI Usage
 
-  Generate 5 clusters from all lockers:
-- ./App -c 5
+- Generate 5 clusters from all lockers:<br>
+`./App -c 5`
 
-  Save output to a custom file:
-- ./App -c 5 -o result.json
+- Save output to a custom file:<br>
+`./App -c 5 -o result.json`
 
-  Filter by country and province and limit output to 1000 lockers:
-- ./App -c 5 -k PL -p lubuskie -l 1000
+- Filter by country and province and limit output to 1000 lockers:<br>
+`./App -c 5 -k PL -p lubuskie -l 1000`
 
-  Limit dataset and adjust algorithm parameters:
-- ./App -c 5 -l 1000 -i 200 -t 0.00001
+- Limit dataset and adjust algorithm parameters:<br>
+`./App -c 5 -l 1000 -i 200 -t 0.00001`
 
 ### Example JSON output for two clusters with ten lockers total
 
@@ -173,7 +169,20 @@ Image below shows example output when error occurs
 
 ### Key Technical choices
 
-- using modern C++ features like: string_view ( to avoid unecessary copying of string variables )
+#### Language Choice
+
+C++ is a high level, object oriented programming language. It's focused on performance, efficiency and flexibility of use.
+It's natural choice for a CLI tool because of it's direct access to operating system.
+Program created in C++ can be compiled and run on multiple operating systems with minimal changes to code.
+
+#### Language version
+
+Project uses C++20 to take advantage of modern language features. Most notably: 
+
+- string_view
+- auto keyword
+- range based for loops
+- constexpr
  
 ### Algorithms Explanation:
 
@@ -189,6 +198,16 @@ I chose this algorithm because it is simple, converges quite fast, and gives goo
 
 I achieved filtered API results by country and province by using get parameters as described in InPostAPI documentation: https://dokumentacja-inpost.atlassian.net/wiki/spaces/PL/pages/451903492/InPost+Integration+FAQ <br>
 I'm also using "page" and "per_page" parameters to control pagination, and "fields" parameter to limit fields returned from API server.
+
+### Deploy
+
+CLI tool executables (for Linux and Windows) are available in Github Release with tag 1.0.0
+
+### Tests
+
+Tests are created using GoogleTest framework. Unit tests are covering most part of project.
+
+After building project you can run tests with command: `ctest --test-dir build`
 
 ## Technologies
 
@@ -209,32 +228,38 @@ Libraries I used:
 - C++20
 - CMake
 - OpenSSL
+- Curl
 - Visual Studio (Or build system of your choosing)
 
 ### Build & run
 
 #### Windows
 
-Important note: Default build system on Windows is Visual Studio. You can choose different build system (using -G option on 3# command) , but if you do - the next steps may differ(especially paths).
+>Default build system on Windows is Visual Studio. You can choose different build system (using -G option ) , but if you do - the next steps may differ (especially paths).
 
-```bash
-1# git clone https://github.com/elsharravy/pcluster
-2# cd pcluster
-3# cmake -S . -B build
-4# cmake --build build --parallel --config Release
-5# ./build/App/Release/App -c 4 -l 1000
+```powershell
+git clone https://github.com/elsharravy/pcluster
+cd pcluster
+cmake -S . -B build
+cmake --build build --parallel --config Release
+./build/App/Release/App -c 4 -l 1000
 ```
 
 #### Linux
 
-Important note: Default build system on Linux is Make. You can choose different build system (using -G option on 3# command) , but if you do - the next steps may differ(especially paths).
+Useful commands for installing prerequisites on Debian based distributions:
+
+- C++20 : `sudo apt install build-essential`
+- CMake : `sudo apt install cmake`
+- OpenSSL: `sudo apt install libssl-dev`
+- Curl: `sudo apt install libcurl4-openssl-dev`
 
 ```bash
-1# git clone https://github.com/elsharravy/pcluster
-2# cd pcluster
-3# cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
-4# cmake --build build
-5# ./build/App/App -c 4 -l 1000
+git clone https://github.com/elsharravy/pcluster
+cd pcluster
+cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
+cmake --build build
+./build/App/App -c 4 -l 1000
 ```
 
 ## What I would do with more time
